@@ -80,7 +80,10 @@
               function makeLFG(props) {
                 var svg = d3.select("#LFG"); //remove everything from the svg before creating the new one
                 svg.selectAll("*").remove();
-                loadLiquidFillGauge("LFG", props.water_per);
+                loadLiquidFillGauge("LFG", props.water_per,config);
+                var config = liquidFillGaugeDefaultSettings();
+                    config.waveAnimateTime = 1500;
+                    config.waveCount = 5;
               }
               
               function highlightFeature(e) {
