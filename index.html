@@ -14,7 +14,7 @@
                 crossorigin=""></script>
         
                 <script src="https://d3js.org/d3.v3.min.js" language="JavaScript"></script>
-                <script src="LFG.js" language="JavaScript"></script>
+                <script src="LFG1.js" language="JavaScript"></script>
         
                 <script type="text/javascript" src="data.js"></script>
 
@@ -37,12 +37,17 @@
                         margin-right: 8px;
                         opacity: 0.7;
                     }
+                    
+                    #title {
+                        text-align: center;
+                        line-height: 1.1px;
+                    }
                 </style>
     </head>
     <body>
       <div id="map" style="height: 500px"></div>
-        <div id= "tooltip" style="height: 90px">
-            
+        <div id= "tooltip" style="height: 100px"> 
+            <h3 id="title"></h3>
             <svg id="LFG" width="80" height="80"></svg>
         </div>
 
@@ -78,13 +83,15 @@
                   }
               
               var config = liquidFillGaugeDefaultSettings();
-                    config.waveAnimateTime = 1500;
+                    config.waveAnimateTime = 5500;
                     config.waveCount = 5;
+         
               
               function makeLFG(props) {
                 var svg = d3.select("#LFG"); //remove everything from the svg before creating the new one
                 svg.selectAll("*").remove();
-                loadLiquidFillGauge("LFG", props.water_per,config);         
+                d3.select("#title").text(props.states);
+                loadLiquidFillGauge("LFG", props.water_per, config);                
               }
               
               function highlightFeature(e) {
@@ -126,7 +133,7 @@
               
               var legend = L.control({position: 'bottomright'});
 
-            legend.onAdd = function (map) {
+                legend.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'legend'),
                     grades = [0, 4.2, 9.7, 15.7, 26.1];
@@ -143,8 +150,7 @@
             };
 
             legend.addTo(map);
-              
-              
+                          
           </script>
     </body>
 </html>
